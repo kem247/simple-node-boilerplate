@@ -1,0 +1,23 @@
+#table-detail {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+}
+
+.dot {
+  height: 200px;
+  width: 200px;
+  margin-top: 10px;
+  line-height: 200px;
+  background-color: rgb(126, 201, 119);
+  border-radius: 50%;
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.something {
+}
