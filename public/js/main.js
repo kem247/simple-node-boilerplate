@@ -38,24 +38,83 @@ document.addEventListener("DOMContentLoaded", () => {
         const date = document.createElement("div");
         const slot = document.createElement("ul");
         const blockCode = document.createElement("blockquote");
+        const newBlock = document.createElement("blockquote");
+        const ThankYou = document.createElement("div");
         //DATE
-        let today = new Date();
-        for (let j = 1; j <= 7; j++) {
-          let days = new Date(
-            today.getFullYear(),
-            today.getMonth(),
-            today.getDate() + j
+        function slotTimes() {
+          for (let i = 1; i <= 10; i++) {
+            slot.innerHTML +=
+              "<div id=addId_ class='custom-select'style='width:200px;'> " +
+              i +
+              " PM  <select> <option value='0'>Reserve:</option>  <option value='1'>Select</option> </select> </div>";
+          }
+
+          return slot;
+        }
+        if (!Date.now) {
+          Date.now = function() {
+            return new Date().getTime();
+          };
+        }
+        let theDate = Date.now();
+
+        document.getElementById("date").innerText = getTheDate(theDate);
+
+        document.getElementById("next").addEventListener("click", e => {
+          e.preventDefault();
+          e.stopPropagation();
+          theDate += 86400000;
+          document.getElementById("date").innerText = getTheDate(theDate);
+        });
+
+        function getTheDate(getDate) {
+          let days = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ];
+          let months = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+          ];
+          let theCDate = new Date(getDate);
+          return (
+            days[theCDate.getDay()] +
+            ", " +
+            theCDate.getDate() +
+            "-" +
+            months[theCDate.getMonth()] +
+            "-" +
+            theCDate.getFullYear()
           );
-          console.log("days", days);
         }
+
         slot.className = "slot";
-        date.innerText = new Date();
-        for (let i = 1; i <= 5; i++) {
-          slot.innerText += i;
-        }
+        ThankYou.innerHTML = "Thank You!";
         blockCode.append(h1, date, slot);
         formList.append(blockCode);
         form.append(formList);
+        let selectSlot = document.getElementById("addId_");
+        slot.addEventListener("change", e => {
+          newBlock.append(ThankYou);
+          e.preventDefault();
+          document.getElementById("date").remove();
+          blockCode.remove();
+        });
         const url = `http://localhost:3000/reservations/${tableList.id}`;
         const reqObj = {
           method: "GET"
@@ -63,6 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch(url, reqObj)
           .then(response => response.json())
           .then(data => console.log(data));
+        slotTimes();
       }
     }
   }
