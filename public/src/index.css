@@ -6,18 +6,25 @@
   margin: 0;
 }
 
+.reservation-button {
+  display: flex;
+  margin: 0;
+  position: relative;
+  top: -96px;
+  left: 13px;
+  flex-flow: wrap;
+  justify-content: space-around;
+}
+
 .dot {
   height: 200px;
   width: 200px;
   margin-top: 10px;
   line-height: 200px;
-  background-color: rgb(126, 201, 119);
+  background-color: rgb(118, 199, 185);
   border-radius: 50%;
   color: white;
   font-size: 3rem;
   font-weight: bold;
   text-align: center;
-}
-
-.something {
 }

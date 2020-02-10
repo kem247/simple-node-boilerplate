@@ -10,26 +10,45 @@
   <h1>
     Vegan Burger Inc.
   </h1>
-  <p></p>
+  <p id="names"></p>
+  <div>
+    <form id="reservation-form">
+      <div class="form-group">
+        <label for="reservation-name"></label>
+        <!-- <input
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="First & Last Name"
+        /> -->
+      </div>
+      <div class="form-group">
+        <label for="Date"></label>
+        <!-- <input type="date" class="form-control" id="date" min="2020-02-11" /> -->
+      </div>
+      <div class="form-group">
+        <label for="Time"></label>
+        <!-- <input
+          type="time"
+          class="form-control"
+          id="time"
+          min="13:00"
+          max="22:00"
+          step="60"
+        /> -->
+      </div>
+      <button type="submit" class="btn btn-primary"></button>
+    </form>
+  </div>
+
   <body class="container center">
     <h1>Tables:</h1>
     <div>
-      <ul style="list-style-type: none" id="table-detail">
-        <div class="dot">1</div>
-        <div class="dot">2</div>
-        <div class="dot">3</div>
-        <div class="dot">4</div>
-        <div class="dot">5</div>
-        <div class="dot">6</div>
-        <div class="dot">7</div>
-        <div class="dot">8</div>
-        <div class="dot">9</div>
-        <div class="dot">10</div>
-      </ul>
+      <ul style="list-style-type: none" id="table-detail"></ul>
     </div>
-    <h2>Reservations:</h2>
+
     <div>
-      <ul id="reservation-detail"></ul>
+      <!-- <ul id="reservation-detail"></ul> -->
     </div>
     <hr />
     <script src="js/utils.js"></script>
