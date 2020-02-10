@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const table = document.querySelector("#table-detail");
       const addReservation1 = document.createElement("button");
       const blockRes = document.createElement("blockquote");
-      const form = document.querySelector("#reservation-form");
+
       blockRes.className = "blockres";
       tableList.id = i;
       tableList.innerHTML += i;
@@ -32,7 +32,30 @@ document.addEventListener("DOMContentLoaded", () => {
       addReservation1.addEventListener("click", () => addReservation());
 
       function addReservation() {
-        table.append(form);
+        const form = document.querySelector("#reservation-form");
+        let formList = document.createElement("div");
+        const h1 = document.createElement("h1");
+        const date = document.createElement("div");
+        const slot = document.createElement("ul");
+        const blockCode = document.createElement("blockquote");
+        //DATE
+        let today = new Date();
+        for (let j = 1; j <= 7; j++) {
+          let days = new Date(
+            today.getFullYear(),
+            today.getMonth(),
+            today.getDate() + j
+          );
+          console.log("days", days);
+        }
+        slot.className = "slot";
+        date.innerText = new Date();
+        for (let i = 1; i <= 5; i++) {
+          slot.innerText += i;
+        }
+        blockCode.append(h1, date, slot);
+        formList.append(blockCode);
+        form.append(formList);
         const url = `http://localhost:3000/reservations/${tableList.id}`;
         const reqObj = {
           method: "GET"
