@@ -1,5 +1,6 @@
 // jest won't error out on DOM calls.
 // console.log(document.querySelector('p').innerHTML);
+// import React, {Component} from "react";
 
 document.addEventListener("DOMContentLoaded", () => {
   function fetchData() {
@@ -28,38 +29,12 @@ document.addEventListener("DOMContentLoaded", () => {
       addReservation1.className = "reservation-button";
 
       addReservation1.addEventListener("click", () => addReservation());
-
       function addReservation() {
-        // e.preventDefault();
-        // const newName = document.querySelector("reservation-name").value;
-        // const date = document.querySelector("Date").value;
-        // const time = document.querySelector("Time").value;
-        const url = `http://localhost:3000/reservations/${tableList.id}`;
-
-        // const reqObj = {
-        //   method: "GET"
-        //   // headers: { "Content-Type": "application/json" }
-        //   // body: JSON.stringify({
-        //   //   name: newName,
-        //   //   date: date,
-        //   //   time: time
-        //   // })
-        // };
-        // const formData = new FormData(
-        //   document.querySelector("#reservation-form")
-        // );
-        // return fetch(url, {
-        //   method: "POST",
-        //   body: formData
-        // }).then(response => response.json());
-        fetch(url)
-          .then(r => r.json())
-          .then(data => {
-            let sp = document.createElement("input");
-            sp.setAttribute("id", "newInputField");
-            sp.setAttribute("name", "newInputField");
-            blockRes.appendChild(sp);
-          });
+        const url = `http://localhost:3000/reservation/${tableList.id}`;
+        const reqObj = {
+          method: "GET"
+        };
+        fetch(url, reqObj).then(reqObj);
       }
     }
   }
