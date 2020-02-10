@@ -25,16 +25,21 @@ document.addEventListener("DOMContentLoaded", () => {
       blockRes.append(addReservation1);
       tableList.append(blockRes);
       table.append(tableList);
+      // table.append(form);
       addReservation1.innerHTML = "Reserve Table";
       addReservation1.className = "reservation-button";
 
       addReservation1.addEventListener("click", () => addReservation());
+
       function addReservation() {
-        const url = `http://localhost:3000/reservation/${tableList.id}`;
+        table.append(form);
+        const url = `http://localhost:3000/reservations/${tableList.id}`;
         const reqObj = {
           method: "GET"
         };
-        fetch(url, reqObj).then(reqObj);
+        fetch(url, reqObj)
+          .then(response => response.json())
+          .then(data => console.log(data));
       }
     }
   }
