@@ -1,0 +1,26 @@
+"use strict";
+module.exports = (sequelize, DataTypes) => {
+  const SequelizeReservation = sequelize.define("Reservation", {
+    name: DataTypes.STRING,
+    slot: DataTypes.DATE,
+    table: DataTypes.INTEGER
+  });
+
+  class Reservation extends SequelizeReservation {
+    static async all() {
+      return await this.findAll();
+    }
+    static async allRaw() {
+      return this.findAll({ raw: true });
+    }
+
+    static async add(reservation) {
+      return this.create({
+        name: reservation.name,
+        slot: reservation.slot
+      });
+    }
+  }
+
+  return Reservation;
+};
