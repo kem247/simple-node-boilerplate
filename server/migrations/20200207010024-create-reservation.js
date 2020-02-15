@@ -22,7 +22,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      tables: {
+      table: {
         type: Sequelize.INTEGER,
         allowNull: false,
         int: true,

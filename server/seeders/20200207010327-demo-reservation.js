@@ -5,26 +5,53 @@ module.exports = {
     return queryInterface.bulkInsert("Reservations", [
       {
         name: "John Cena",
-        slot: new Date("21 Feb 2020 17:00:00 GMT-0500"),
+        slot: new Date("14 Feb 2020 17:00:00 GMT-0500"),
         createdAt: new Date(),
         updatedAt: new Date(),
         table: 1
       },
       {
         name: "Not John Cena",
-        slot: new Date("21 Feb 2020 18:30:00 GMT-0500"),
+        slot: new Date("15 Feb 2020 18:30:00 GMT-0500"),
         createdAt: new Date(),
         updatedAt: new Date(),
         table: 2
       },
-      queryInterface.bulkDelete("Table", [
-        {
-          id: 1,
-          name: 1,
-          table: 1
-        },
-        { id: 2, name: 2, table: 2 }
-      ])
+      {
+        name: "Not John Cena",
+        slot: new Date("16 Feb 2020 18:30:00 GMT-0500"),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        table: 3
+      },
+      {
+        name: "Not John Cena",
+        slot: new Date("17 Feb 2020 18:30:00 GMT-0500"),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        table: 3
+      },
+      {
+        name: "Not John Cena",
+        slot: new Date("18 Feb 2020 18:30:00 GMT-0500"),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        table: 3
+      },
+      {
+        name: "Not John Cena",
+        slot: new Date("19 Feb 2020 18:30:00 GMT-0500"),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        table: 3
+      },
+      {
+        name: "Not John Cena",
+        slot: new Date("18 Feb 2020 18:30:00 GMT-0500"),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        table: 3
+      }
     ]);
   },
 
