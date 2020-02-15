@@ -1,10 +1,39 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
+import { connect } from "react-redux";
 import "./App.css";
+import { fetchReservations } from "./store/getReservations";
 import { intervals, getDate, slotTimes } from "../src/utils";
 class App extends Component {
   constructor() {
     super();
+    this.state = {
+      page: 1
+    };
+    this.clickHandler = this.clickHandler.bind(this);
+  }
+
+  //
+  // componentDidMount() {
+  //   let current = 0;
+  //   this.fakeReservations.map((item,idx) => {
+  //     if(item.slot === Date.now())
+  //   })
+  // }
+  componentDidMount() {
+    this.props.fetchReservations();
+  }
+  clickHandler(event) {
+    let current = this.state.page;
+    if (event.target.className === "rightClick") {
+      this.setState({
+        page: current + 1
+      });
+    } else {
+      this.setState({
+        page: current - 1
+      });
+    }
   }
   render() {
     if (!Date.now) {
@@ -58,7 +87,7 @@ class App extends Component {
           className="dateDisplay"
           style={{ display: "flex", flexDirection: "row" }}
         >
-          <span
+          {/* <span
             style={{
               display: "flex",
               flexDirection: "row",
@@ -82,6 +111,7 @@ class App extends Component {
             type="submit"
           >
             {[1, 2].map(n => {
+              
               return (
                 <select
                   key={n}
@@ -103,12 +133,57 @@ class App extends Component {
                 </select>
               );
             })}
-            <input type="submit" value="Submit" />
-          </span>
+
+            <input
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                marginTop: "35px"
+              }}
+              type="submit"
+              value="Submit"
+            />
+          </span> */}
+          <button
+            className="rightClick"
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "right",
+              justifyContent: "right",
+              alignSelf: "right",
+              marginLeft: "80vw"
+            }}
+          >
+            Next
+          </button>
+          <button
+            className="leftClick"
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "left",
+              justifyContent: "left",
+              alignSelf: "left",
+              marginRight: "80vw"
+            }}
+          >
+            Back
+          </button>
         </div>
       </div>
     );
   }
 }
 
-export default App;
+const mapState = state => {
+  return {
+    reservations: state.reservations
+  };
+};
+const mapDispatch = dispatch => {
+  return {
+    fetchReservations: page => dispatch(fetchReservations(page))
+  };
+};
+export default connect(mapState, mapDispatch)(App);
