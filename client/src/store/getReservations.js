@@ -1,5 +1,5 @@
 import axios from "axios";
-
+// let reservations = require("../../../server/routes/reservations");
 const GET_RESERVATIONS = "GET_RESERVATIONS";
 
 const getAllReservations = reservations => ({
@@ -9,7 +9,7 @@ const getAllReservations = reservations => ({
 export const fetchReservations = (page = 1) => {
   return async dispatch => {
     try {
-      const { data } = await axios.get("/", {
+      const { data } = await axios.get("http://localhost:3000/reservations", {
         params: { page }
       });
       dispatch(getAllReservations(data));

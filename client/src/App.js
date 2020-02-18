@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import { connect } from "react-redux";
 import { Button } from "react-bootstrap";
 import "./App.css";
@@ -37,15 +36,15 @@ class App extends Component {
     }
   }
   render() {
-    console.log("PRPA", this.props);
+    console.log("PRPA", this.props.fetchReservations());
     if (!Date.now) {
       Date.now = function() {
         return new Date().getTime();
       };
     }
-    let theDate = Date.now();
-    let nextDate = Date.now() + 86400000;
-    let int = intervals("1:00:00 PM", "10:00:00 PM");
+    // let theDate = Date.now();
+    // let nextDate = Date.now() + 86400000;
+    // let int = intervals("1:00:00 PM", "10:00:00 PM");
     return (
       <div
         style={{
