@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import { connect } from "react-redux";
+import { Button } from "react-bootstrap";
 import "./App.css";
 import { fetchReservations } from "./store/getReservations";
 import { intervals, getDate, slotTimes } from "../src/utils";
@@ -36,6 +37,7 @@ class App extends Component {
     }
   }
   render() {
+    console.log("PRPA", this.props);
     if (!Date.now) {
       Date.now = function() {
         return new Date().getTime();
@@ -87,6 +89,24 @@ class App extends Component {
           className="dateDisplay"
           style={{ display: "flex", flexDirection: "row" }}
         >
+          <span
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              marginRight: "50px"
+            }}
+          >
+            {this.state.page < 1 && (
+              <Button name="prev" onClick={this.clickHandler}>
+                Prev
+              </Button>
+            )}
+            {this.state.page > Math.ceil(1000 / 50) && (
+              <Button name="next" onClick={this.clickHandler}>
+                Next
+              </Button>
+            )}
+          </span>
           {/* <span
             style={{
               display: "flex",
@@ -144,7 +164,7 @@ class App extends Component {
               value="Submit"
             />
           </span> */}
-          <button
+          {/* <button
             className="rightClick"
             style={{
               display: "flex",
@@ -169,7 +189,7 @@ class App extends Component {
             }}
           >
             Back
-          </button>
+          </button> */}
         </div>
       </div>
     );

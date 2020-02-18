@@ -9,12 +9,12 @@ const getAllReservations = reservations => ({
 export const fetchReservations = (page = 1) => {
   return async dispatch => {
     try {
-      const { data } = await axios.get("/api/reservations", {
+      const { data } = await axios.get("/", {
         params: { page }
       });
       dispatch(getAllReservations(data));
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 };
