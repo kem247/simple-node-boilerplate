@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Button } from "react-bootstrap";
 import "./App.css";
 import { fetchReservations } from "./store/getReservations";
+import Reservations from "./Reservations";
 import { intervals, getDate, slotTimes } from "../src/utils";
 class App extends Component {
   constructor() {
@@ -25,7 +26,7 @@ class App extends Component {
   }
   clickHandler(event) {
     let current = this.state.page;
-    if (event.target.className === "rightClick") {
+    if (event.target.name === "next") {
       this.setState({
         page: current + 1
       });
@@ -36,12 +37,13 @@ class App extends Component {
     }
   }
   render() {
-    console.log("PRPA", this.props.fetchReservations());
+    // console.log("PRPA", this.props.fetchReservations());
     if (!Date.now) {
       Date.now = function() {
         return new Date().getTime();
       };
     }
+    console.log(this.state);
     // let theDate = Date.now();
     // let nextDate = Date.now() + 86400000;
     // let int = intervals("1:00:00 PM", "10:00:00 PM");
@@ -88,20 +90,49 @@ class App extends Component {
           className="dateDisplay"
           style={{ display: "flex", flexDirection: "row" }}
         >
+          {!this.props.reservations ? (
+            <h1>LOADING</h1>
+          ) : (
+            <div style={{ width: "100vw" }}>
+              <div className="deck">
+                {this.props.reservations.map(reserve => {
+                  const { date, slot } = reserve;
+
+                  return (
+                    <Reservations key={reserve.id} date={date} slot={slot} />
+                  );
+                })}
+              </div>
+            </div>
+          )}
           <span
             style={{
               display: "flex",
               flexDirection: "row",
-              marginRight: "50px"
+              justifyContent: "center",
+              margin: "2vw",
+              color: "black"
             }}
           >
-            {this.state.page < 1 && (
-              <Button name="prev" onClick={this.clickHandler}>
+            {this.state.page > 1 && (
+              <Button
+                style={{
+                  marginRight: "20vw"
+                }}
+                type="submit"
+                name="prev"
+                onClick={this.clickHandler}
+              >
                 Prev
               </Button>
             )}
-            {this.state.page > Math.ceil(1000 / 50) && (
-              <Button name="next" onClick={this.clickHandler}>
+            {this.state.page < Math.ceil(1000 / 50) && (
+              <Button
+                style={{}}
+                type="submit"
+                name="next"
+                onClick={this.clickHandler}
+              >
                 Next
               </Button>
             )}
